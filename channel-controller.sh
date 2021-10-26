@@ -1,5 +1,4 @@
 #!/bin/bash
-CHANNEL_NAME='channelone'
 
 # Needs CHANNEL_NAME and PROFILE.
 createEmptyChannelWithOrderer() {
@@ -40,6 +39,8 @@ addPeerToChannel() {
 # Sets the current selected peer. This can be used to check the channels, that the peer is currently in (peer channel list).
 # Needs ORG_NUBMER and ORG_ADRESS
 getPeerChannel() {
+    export FABRIC_CFG_PATH=$PWD/../config/
+
     export CORE_PEER_TLS_ENABLED=true
     export CORE_PEER_LOCALMSPID="Org${ORG_NUMBER}MSP"
     export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org${ORG_NUMBER}.example.com/peers/peer0.org${ORG_NUMBER}.example.com/tls/ca.crt
