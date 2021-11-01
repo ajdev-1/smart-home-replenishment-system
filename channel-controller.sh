@@ -4,7 +4,7 @@
 createEmptyChannelWithOrderer() {
     echo "Creating empty channel ${CHANNEL_NAME} with profile ${PROFILE} with orderer"
 
-    FABRIC_CFG_PATH=${PWD}/configtx
+    export FABRIC_CFG_PATH=${PWD}/configtx
 
     ORDERER_CA=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
     ORDERER_ADMIN_TLS_SIGN_CERT=${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
@@ -12,7 +12,6 @@ createEmptyChannelWithOrderer() {
 
     configtxgen -profile ${PROFILE} -outputBlock ./channel-artifacts/${CHANNEL_NAME}.block -channelID ${CHANNEL_NAME}
 
-    echo "Joining orderer to the channel ${CHANNEL_NAME}"
     osnadmin channel join \
         --channelID ${CHANNEL_NAME} \
         --config-block ./channel-artifacts/${CHANNEL_NAME}.block \

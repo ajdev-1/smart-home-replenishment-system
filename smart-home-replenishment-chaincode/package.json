@@ -1,0 +1,16 @@
+{
+  "name": "smart-home-replenishment-chaincode",
+  "version": "1.0.0",
+  "description": "Chaincode for the decentralised smart home replenishment system that cointains the relevant smart contracts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc mocha test",
+    "start": "fabric-chaincode-node start"
+  },
+  "author": "Jannik Altenhofer",
+  "license": "ISC",
+  "dependencies": {
+    "fabric-contract-api": "^2.2.2",
+    "fabric-shim": "^2.2.2"
+  }
+}
