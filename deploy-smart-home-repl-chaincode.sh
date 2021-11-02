@@ -210,13 +210,23 @@ infoln "\n\n3. Committing chaincode to both channels after they have been approv
 # ----------------------------- END: COMMIT PROCESS ----------------------------- #
 
 
-# EXAMPLE ON HOW TO INVOKE THE SMART HOME REPLENISHMENT CHAINCODE:
-# parameters: 
+# EXAMPLES ON HOW TO INVOKE THE SMART HOME REPLENISHMENT CHAINCODE:
+# Placeholder for needed parameters: 
 #   - channel1 (channel)
 #   - smart_home_replenishment_chaincode (name)
 #   - on org1 and org2 peers
 #   - function parameters = '{"function":"InitLedger","Args":[]}'
 # Be sure to call ./setorg <ORG_NUMBER> <ORG_ADRESS> before running the command below. This will determine, which peer will be used to execute that command.
+#
+# Add a product:
 # peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C channel1 -n smart_home_replenishment_chaincode --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" -c '{"function":"addProduct","Args":["water", "2", "Just water", "2", "org2"]}'
-
+#
+# Get specific product that you created
+# peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C channel1 -n smart_home_replenishment_chaincode --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" -c '{"function":"getProductByNameAndOrg","Args":["water", "org2"]}'
+#
+# List all products with org x
+# peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C channel1 -n smart_home_replenishment_chaincode --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" -c '{"function":"listProducts","Args":["org2"]}'
+#
+# Order a product
+# peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C channel1 -n smart_home_replenishment_chaincode --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" --peerAddresses localhost:9051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt" -c '{"function":"orderProduct","Args":["consumer1", "water", "org2"]}'
 

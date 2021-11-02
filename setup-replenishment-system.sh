@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export FABRIC_CFG_PATH=$PWD/../config/
+
 . ./scripts/utils.sh
 
 #FIRST_CHANNEL=$2
