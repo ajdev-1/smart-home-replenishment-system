@@ -107,15 +107,7 @@ class ProductContract extends Contract {
         const productId = `product-${name}-${org}`;
 
         const productBuffer = await ctx.stub.getState(productId);
-        let product1 = productBuffer.toString('utf8').replace(/\\/g, '');
-
-        console.log('LOG1', typeof product1);
-        console.log('LOG1', product1);
-
-        const product = JSON.parse(product1);
-
-        console.log('LOG1', typeof product);
-        console.log('LOG1', product);
+        let product = JSON.parse(productBuffer.toString('utf8').replace(/\\/g, ''));
 
         if (product) {
             console.info(`Found asset with id ${productId} and quantity ${product.quantity}:`, product);
