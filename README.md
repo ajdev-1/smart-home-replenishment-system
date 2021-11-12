@@ -11,8 +11,14 @@ This project aims to provide a decentralized solution to manufacturers which mea
  * [Smart Contracts with NodeJS](https://nodejs.org/en/)
  * [Built upon the official Hyperledger Fabric fabric-samples repository](https://github.com/hyperledger/fabric-samples)
 
+## Adjustments of the initial Hyperledger Fabric fabric-samples repository
+ * [Added a channel controller](https://github.com/ajdev-1/smart-home-replenishment-system/blob/main/channel-controller.sh)
+ * [Added a setup script](https://github.com/ajdev-1/smart-home-replenishment-system/blob/main/setup-replenishment-system.sh)
+ * [Added a set org script](https://github.com/ajdev-1/smart-home-replenishment-system/blob/main/set-org.sh)
+ * [Added a script for chaincode packaging and deployment](https://github.com/ajdev-1/smart-home-replenishment-system/blob/main/deploy-smart-home-repl-chaincode.sh)
+
 ## Decentralized infrastructure
-The images below show the Hyperledger Fabric network infrasctructure that has been developed for this project. The first image shows an overall infrastructure that is scalable in terms of a production system. The second image shows the minimal setup that you can deploy on your machine by using this repository. It consists of three organisations, two manufacturers and one organisation which represents the consumers. These are linked via a Replenishment Hub that is installed in the household of the consumer and a web application. The Hub is responsible to receive sensor data for IoT-devices that measure the actual need of the products. The consumer is able to configure the threshold for a reorder through the web app for every connected device (e.g. filled up to 30%). Also, the consumer is able to connect any poduct of any manufacturer with an IoT-device. This means that this product will get ordered as soon as the reordering threshold gets hit.
+This whole systems builds upon the Hyperledger Fabric fabric samples project. The images below show the Hyperledger Fabric network infrasctructure that has been developed for this project. The first image shows an overall infrastructure that is scalable in terms of a production system. The second image shows the minimal setup that you can deploy on your machine by using this repository. It consists of three organisations, two manufacturers and one organisation which represents the consumers. These are linked via a Replenishment Hub that is installed in the household of the consumer and a web application. The Hub is responsible to receive sensor data for IoT-devices that measure the actual need of the products. The consumer is able to configure the threshold for a reorder through the web app for every connected device (e.g. filled up to 30%). Also, the consumer is able to connect any poduct of any manufacturer with an IoT-device. This means that this product will get ordered as soon as the reordering threshold gets hit.
 
 ### Overall Hyperledger Fabric Network
 ![Overall Hyperledger Fabric Network](https://user-images.githubusercontent.com/38671044/141429032-48c299b0-fad0-49ce-94ca-cd87dd67338d.png)
