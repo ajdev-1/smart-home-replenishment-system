@@ -1,4 +1,4 @@
-This is the initial Hyperledger Fabric README.md from the [fabric-samples](https://github.com/hyperledger/fabric-samples/tree/release-2.2) repository. It explains how to use this script to add another org to the test network. In this project this script is used to add the third organisation (second manufacturer) to the test network.
+This is the initial Hyperledger Fabric README.md from the [fabric-samples](https://github.com/hyperledger/fabric-samples/tree/release-2.2) repository. It explains how to use this script to add another org to the test network. In this project this script is used in the [setup-replenishment-system.sh](https://github.com/ajdev-1/smart-home-replenishment-system/blob/main/setup-replenishment-system.sh#L34-L37) script to add the third organisation (second manufacturer) to the test network.
 
 ## Adding Org3 to the test network
 
