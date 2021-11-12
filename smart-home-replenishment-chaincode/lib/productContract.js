@@ -134,6 +134,66 @@ class ProductContract extends Contract {
             throw new Error(`Asset with id ${productId} does not exist.`);
         }
     }
+
+    /**
+     * A customer can use this smart contract to issue a product request which will notify the manufacturer.
+     * 
+     * @param {*} ctx 
+     * @param {*} orderer The orderer who wants to return the ordered product.
+     * @param {*} name The name of the product.
+     * @param {*} org The org from which the product is.
+     */
+    async issueReturnRequest(ctx, orderer, name, org) {
+        const returnRequest = {
+            id: `return-request-${orderer}-${name}-${org}`,
+            orderer: orderer,
+            name: name,
+            org: org,
+            status: "active"
+        };
+
+        console.info(`Adding return request with id ${returnRequest.id} to the ledger:`, returnRequest);
+        ctx.stub.putState(returnRequest.id, Buffer.from(JSON.stringify(returnRequest)));
+
+        const eventPayload = {
+            returnedProduct: name,
+            orderer: orderer,
+            returnRequest: returnRequest
+        };
+        ctx.stub.setEvent(returnRequest.id, eventPayload);
+
+        return JSON.stringify(product);
+    }
+
+    /**
+     * A manufacturer calls this function to update the ledger with the new product quantity
+     * as soon as the product arrives at the manufacturer.
+     * 
+     * @param {*} ctx 
+     * @param {*} orderer The orderer who wants to return the ordered product.
+     * @param {*} name The name of the product.
+     * @param {*} org The org from which the product is.
+     */
+    async acceptReturnRequest(ctx, orderer, name, org) {
+        // 1. Get product return request and inactivate.
+        const returnRequestId = `return-request-${orderer}-${name}-${org}`
+        const returnRequestBuffer = await ctx.stub.getState(returnRequestId);
+        let returnRequest = JSON.parse(returnRequestBuffer.toString('utf8').replace(/\\/g, ''));
+
+        if (returnRequest) {
+            let relatedProduct = await ctx.stub.getState(`product-${name}-${org}`);
+
+            if (relatedProduct) {
+                relatedProduct.quantity += 1;
+            } else {
+                throw new Error(`Product with id ${`product-${name}-${org}`} does not exist.`);
+            }
+        } else {
+            throw new Error(`Return request with id ${returnRequestId} does not exist.`);
+        }
+
+        return JSON.stringify(returnRequest);
+    }  
 }
 
 
