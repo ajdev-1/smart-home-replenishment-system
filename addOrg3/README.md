@@ -1,3 +1,5 @@
+This is the initial Hyperledger Fabric README.md from the [fabric-samples](https://github.com/hyperledger/fabric-samples/tree/release-2.2) repository. It explains how to use this script to add another org to the test network. In this project this script is used to add the third organisation (second manufacturer) to the test network.
+
 ## Adding Org3 to the test network
 
 You can use the `addOrg3.sh` script to add another organization to the Fabric test network. The `addOrg3.sh` script generates the Org3 crypto material, creates an Org3 organization definition, and adds Org3 to a channel on the test network.
